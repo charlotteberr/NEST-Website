@@ -5,12 +5,12 @@ interface PlaceholderProps {
     className?: string;
 }
 
-// Dashed outline marking where a section's real content will go.
+// A section whose real content isn't written yet: just the heading and a note about what goes there.
 export default function Placeholder({ title, note, children, className = "" }: PlaceholderProps) {
     return (
-        <section className={`rounded-lg border-2 border-dashed border-sage bg-mint/60 p-6 flex flex-col gap-3 ${className}`}>
+        <section className={`flex flex-col gap-3 ${className}`}>
             <h2 className="font-inconsolata text-forest text-2xl font-bold">{title}</h2>
-            {note && <p className="font-inconsolata text-sm text-moss italic">TODO: {note}</p>}
+            {note && <p className="leading-relaxed">[Placeholder: {note}]</p>}
             {children}
         </section>
     );

@@ -4,13 +4,44 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import PlantIcon from "@/components/PlantIcon";
-import { pages } from "@/lib/pages";
-import { plants } from "@/lib/plants";
 
-// Pages not already reached through a plant's section of the menu.
-const explorePages = pages.filter(
-    (page) => page.href !== "/" && !plants.some((plant) => plant.links.some((link) => link.href === page.href))
-);
+// The Pages menu shows on every page, so its links live here.
+// Each plant gets a group of links; plantId picks its little drawing from PlantIcon.
+const plantMenus = [
+    {
+        plantId: "rabbitbrush",
+        name: "Rabbitbrush",
+        links: [
+            { label: "Natural Dyeing", href: "/natural-dyeing" },
+            { label: "Rabbitbrush Research", href: "/rabbitbrush" },
+            { label: "Characteristics", href: "/native-plants#rabbitbrush" },
+        ],
+    },
+    {
+        plantId: "aster",
+        name: "Aster",
+        links: [
+            { label: "Aster Research", href: "/aster" },
+            { label: "Characteristics", href: "/native-plants#aster" },
+        ],
+    },
+    // TO ADD LATER: lichen. Remove the "// " from these lines to add it to the menu.
+    // {
+    //     plantId: "lichen",
+    //     name: "Lichen",
+    //     links: [
+    //         { label: "Rabbitbrush Research", href: "/rabbitbrush" },
+    //         { label: "Characteristics", href: "/native-plants#lichen" },
+    //     ],
+    // },
+];
+
+const exploreLinks = [
+    { label: "AdaCAD", href: "/weaving" },
+    { label: "Public Exhibition", href: "/exhibition" },
+    { label: "Interactive Dyeing", href: "/dyeing" },
+    { label: "Colorado Native Plants", href: "/native-plants" },
+];
 
 interface MenuLinkProps {
     href: string;
@@ -98,10 +129,10 @@ export default function Nav() {
                                 Home
                             </MenuLink>
 
-                            {plants.map((plant) => (
-                                <div key={plant.id} className="border-b border-sage py-1">
+                            {plantMenus.map((plant) => (
+                                <div key={plant.plantId} className="border-b border-sage py-1">
                                     <p className="flex items-center gap-2 px-4 py-2 font-inconsolata font-bold text-forest">
-                                        <PlantIcon plantId={plant.id} />
+                                        <PlantIcon plantId={plant.plantId} />
                                         {plant.name}
                                     </p>
                                     {plant.links.map((link) => (
@@ -109,17 +140,14 @@ export default function Nav() {
                                             {link.label}
                                         </MenuLink>
                                     ))}
-                                    <MenuLink href={`/native-plants#${plant.id}`} pathname={pathname} onNavigate={close} className="pl-14 text-sm">
-                                        About {plant.name}
-                                    </MenuLink>
                                 </div>
                             ))}
 
                             <div className="py-1">
                                 <p className="px-4 py-2 font-inconsolata font-bold text-forest">Explore</p>
-                                {explorePages.map((page) => (
-                                    <MenuLink key={page.href} href={page.href} pathname={pathname} onNavigate={close} className="pl-14 text-sm">
-                                        {page.title}
+                                {exploreLinks.map((link) => (
+                                    <MenuLink key={link.href} href={link.href} pathname={pathname} onNavigate={close} className="pl-14 text-sm">
+                                        {link.label}
                                     </MenuLink>
                                 ))}
                             </div>

@@ -41,7 +41,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${inconsolata.variable} ${notoSansJP.variable} antialiased min-h-screen flex flex-col`}
       >
         <Nav />
-        <main className="flex-1 w-full max-w-5xl mx-auto px-4 sm:px-8 py-12">
+        <main className="flex-1 w-full max-w-5xl mx-auto px-4 sm:px-8 pt-10 pb-12">
           {children}
         </main>
         <Footer />

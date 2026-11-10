@@ -15,7 +15,7 @@ export default function PhotoRow({ photos }: { photos: Photo[] }) {
                     src={photo.src}
                     alt={photo.alt}
                     sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                    className="w-full h-64 object-cover rounded-md border-2 border-sage"
+                    className="w-full h-64 object-cover rounded-md"
                 />
             ))}
         </div>
