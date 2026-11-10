@@ -208,7 +208,7 @@ export default function AsterResearchPage() {
                             sizes="160px"
                             className="w-40 h-40 rounded-md"
                         />
-                        <figcaption className="text-sm text-ink/80">[Placeholder: caption.]</figcaption>
+                        <figcaption className="text-sm text-ink/80">Draft of the Aster pattern made in photoshop.</figcaption>
                     </figure>
                 </div>
 
